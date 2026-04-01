@@ -4,10 +4,10 @@ export default function Stats() {
       <div className="container">
         <div className="stats-grid">
           {[
-            { v:'5,000+', l:'Vehicles Monitored' },
-            { v:'500+',   l:'NZ Businesses Served' },
-            { v:'40M+',   l:'km Tracked Per Month' },
-            { v:'20%',    l:'Average Insurance Savings' },
+            { v: '1080P', l: 'Full HD Recording' },
+            { v: '16',    l: 'Max Camera Channels' },
+            { v: '12m',   l: 'Pedestrian Detection Range' },
+            { v: '4G/LTE', l: 'Live Streaming Connectivity' },
           ].map(({ v, l }) => (
             <div key={l} className="stats-item">
               <div className="stats-number">{v}</div>

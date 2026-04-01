@@ -1,91 +1,90 @@
 'use client';
-import { useState } from 'react';
 
-const PLANS = [
+// CloudCam doesn't publish pricing — show product comparison instead
+const PRODUCTS = [
   {
-    name:'Starter', desc:'Perfect for small fleets under 10 vehicles', monthly:29, annual:23,
-    cta:'Get Started', ctaCls:'btn-outline',
-    features:[
-      {on:true,  t:'GPS Tracking (30s update)'},
-      {on:true,  t:'7-day trip history'},
-      {on:true,  t:'Basic alerts & notifications'},
-      {on:true,  t:'Mobile app access'},
-      {on:true,  t:'Email support'},
-      {on:false, t:'Live camera streaming'},
-      {on:false, t:'AI driver safety'},
-      {on:false, t:'Cloud video storage'},
+    model: 'X1N',
+    name: 'Light Vehicles',
+    desc: 'Ideal for cars, utes, and vans requiring basic fleet monitoring.',
+    specs: [
+      { label: 'AHD Channels', value: '4 × 1080P' },
+      { label: 'IPC Channels', value: '1 × 1080P' },
+      { label: 'Storage', value: 'HDD' },
+      { label: 'Connectivity', value: '4G/LTE + GPS' },
+      { label: 'AI Camera', value: 'Optional' },
+      { label: 'Inertia Sensor', value: '3-axis' },
     ],
+    cta: 'Get a Quote',
+    ctaCls: 'btn-outline',
   },
   {
-    name:'Professional', desc:'Full camera + GPS for growing fleets', monthly:59, annual:47,
-    featured:true, cta:'Get Started', ctaCls:'btn-primary',
-    features:[
-      {on:true, t:'GPS Tracking (10s update)'},
-      {on:true, t:'30-day trip history'},
-      {on:true, t:'Live camera streaming'},
-      {on:true, t:'30-day cloud video storage'},
-      {on:true, t:'AI driver safety scoring'},
-      {on:true, t:'Geofencing & alerts'},
-      {on:true, t:'RUC reporting'},
-      {on:true, t:'NZ phone support'},
+    model: 'X3N',
+    name: 'All-Round',
+    desc: 'Best for buses, minivans, and fleets needing inside and outside coverage.',
+    featured: true,
+    specs: [
+      { label: 'AHD Channels', value: '4 × 1080P' },
+      { label: 'IPC Channels', value: '4 × 1080P' },
+      { label: 'Storage', value: 'HDD' },
+      { label: 'Connectivity', value: '4G/LTE + GPS' },
+      { label: 'AI Camera', value: '✓ Compatible' },
+      { label: 'Inertia Sensor', value: '3-axis' },
     ],
+    cta: 'Get a Quote',
+    ctaCls: 'btn-primary',
   },
   {
-    name:'Enterprise', desc:'Custom solutions for large operations',
-    cta:'Contact Sales', ctaCls:'btn-outline',
-    features:[
-      {on:true, t:'Everything in Professional'},
-      {on:true, t:'90-day cloud video storage'},
-      {on:true, t:'Multi-camera per vehicle'},
-      {on:true, t:'API & integrations'},
-      {on:true, t:'Custom reporting & dashboards'},
-      {on:true, t:'Dedicated account manager'},
-      {on:true, t:'On-site installation NZ-wide'},
-      {on:true, t:'SLA & priority support'},
+    model: 'X5N',
+    name: 'Heavy Vehicles',
+    desc: 'Built for trucks, heavy machinery, and large fleet operations.',
+    specs: [
+      { label: 'AHD Channels', value: '8 × 1080P' },
+      { label: 'IPC Channels', value: 'Expandable' },
+      { label: 'Storage', value: 'HDD' },
+      { label: 'Connectivity', value: '4G/LTE + GPS' },
+      { label: 'AI Camera', value: '✓ Full Integration' },
+      { label: 'Inertia Sensor', value: '3-axis' },
     ],
+    cta: 'Get a Quote',
+    ctaCls: 'btn-outline',
   },
 ];
 
 export default function Pricing() {
-  const [annual, setAnnual] = useState(false);
-
   return (
     <section className="pricing section" id="pricing">
       <div className="container">
         <div className="section-header">
-          <div className="section-tag">Simple Pricing</div>
-          <h2 className="section-title">Transparent plans, no surprises</h2>
-          <p className="section-subtitle">Monthly subscriptions with no lock-in contracts. Hardware available for purchase or lease.</p>
-        </div>
-
-        <div className="price-toggle">
-          <button className={`toggle-btn${!annual?' toggle-active':''}`} onClick={()=>setAnnual(false)}>Monthly</button>
-          <button className={`toggle-btn${annual?' toggle-active':''}`} onClick={()=>setAnnual(true)}>
-            Annual <span className="save-badge">Save 20%</span>
-          </button>
+          <div className="section-tag">Product Comparison</div>
+          <h2 className="section-title">Choose the right DVR<br/>for your fleet</h2>
+          <p className="section-subtitle">All systems include 1080P HD recording, 4G/LTE live streaming, GPS tracking, and 3-axis inertia sensors. Contact us for pricing.</p>
         </div>
 
         <div className="pricing-grid">
-          {PLANS.map(({ name, desc, monthly, annual: ann, featured, cta, ctaCls, features }) => (
-            <div key={name} className={`price-card${featured?' price-card-featured':''}`}>
+          {PRODUCTS.map(({ model, name, desc, featured, specs, cta, ctaCls }) => (
+            <div key={model} className={`price-card${featured ? ' price-card-featured' : ''}`}>
               {featured && <div className="price-badge">Most Popular</div>}
+              <div style={{
+                display: 'inline-block',
+                padding: '4px 12px',
+                background: featured ? 'rgba(0,87,255,0.15)' : 'var(--blue-100)',
+                color: featured ? '#7EB3FF' : 'var(--blue-600)',
+                borderRadius: 100,
+                fontSize: 13,
+                fontWeight: 800,
+                letterSpacing: '0.06em',
+                marginBottom: 12,
+              }}>{model}</div>
               <h3>{name}</h3>
               <p className="price-desc">{desc}</p>
               <div className="price-amount-wrap">
-                {monthly ? (
-                  <>
-                    <span className="price-currency">$</span>
-                    <span className="price-num">{annual ? ann : monthly}</span>
-                    <span className="price-period">/vehicle/mo</span>
-                  </>
-                ) : (
-                  <span className="price-custom">Custom</span>
-                )}
+                <span className="price-custom" style={{ fontSize: 28 }}>Contact for Pricing</span>
               </div>
               <ul className="price-features">
-                {features.map(({ on, t }) => (
-                  <li key={t} className={on?'':'off'}>
-                    <span className={on?'price-check':''}>{on?'✓':'✗'}</span>{t}
+                {specs.map(({ label, value }) => (
+                  <li key={label} style={{ justifyContent: 'space-between' }}>
+                    <span style={{ color: 'var(--gray-600)' }}>{label}</span>
+                    <strong style={{ color: 'var(--navy-900)', fontWeight: 600 }}>{value}</strong>
                   </li>
                 ))}
               </ul>

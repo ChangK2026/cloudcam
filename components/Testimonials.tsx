@@ -1,10 +1,26 @@
-const ITEMS = [
-  { initials:'MR', name:'Mark Richards', role:'Operations Manager · FleetCo NZ',
-    text:'"CloudCam paid for itself within two months after we successfully disputed a fraudulent insurance claim. The footage was crystal clear and the insurer accepted it immediately."' },
-  { initials:'SK', name:'Sarah Kim', role:'Fleet Director · KiwiLogistics', featured:true,
-    text:'"The real-time GPS and camera combo is a game changer. Our drivers know they\'re being monitored and our near-miss incidents have dropped by 40% in just 6 months."' },
-  { initials:'JP', name:'James Patel', role:'Director · BuildRight Construction',
-    text:'"Setup was incredibly easy — the CloudCam team installed everything across our 45 vehicles in two days. The NZ-based support team is responsive and actually helpful."' },
+// AI behaviour detection features as highlight cards (no real testimonials on site)
+const HIGHLIGHTS = [
+  {
+    icon: '🚫',
+    title: 'Phone Usage Detection',
+    desc: 'SmartView AI automatically detects when a driver picks up or uses their phone while driving, triggering an immediate in-cab alert.',
+    tag: 'AI SmartView',
+    featured: false,
+  },
+  {
+    icon: '😴',
+    title: 'Fatigue & Drowsiness Monitoring',
+    desc: 'Continuous monitoring for yawning, eye closure, and head nodding. Alerts are issued before drowsiness becomes a serious safety risk on the road.',
+    tag: 'AI SmartView',
+    featured: true,
+  },
+  {
+    icon: '🚶',
+    title: 'Pedestrian Detection',
+    desc: 'IPD cameras detect pedestrians — sitting, standing, or cycling — at 0.5 to 12 metres, giving drivers and operators real-time proximity warnings.',
+    tag: 'IPD Camera',
+    featured: false,
+  },
 ];
 
 export default function Testimonials() {
@@ -12,21 +28,36 @@ export default function Testimonials() {
     <section className="testimonials section">
       <div className="container">
         <div className="section-header">
-          <div className="section-tag">Customer Stories</div>
-          <h2 className="section-title">Trusted by fleets across New Zealand</h2>
+          <div className="section-tag">AI Safety Features</div>
+          <h2 className="section-title">Intelligence built into<br/>every camera</h2>
+          <p className="section-subtitle">CloudCam&apos;s AI SmartView system monitors up to 16 camera feeds simultaneously, detecting dangerous behaviours before they become incidents.</p>
         </div>
         <div className="testi-grid">
-          {ITEMS.map(({ initials, name, role, text, featured }) => (
-            <div key={name} className={`testi-card${featured?' testi-featured':''}`}>
-              <div className="stars">★★★★★</div>
-              <p>{text}</p>
-              <div className="testi-author">
-                <div className="testi-avatar">{initials}</div>
-                <div>
-                  <span className="testi-name">{name}</span>
-                  <span className="testi-role">{role}</span>
-                </div>
+          {HIGHLIGHTS.map(({ icon, title, desc, tag, featured }) => (
+            <div key={title} className={`testi-card${featured ? ' testi-featured' : ''}`}>
+              <div style={{ fontSize: 40, marginBottom: 16 }}>{icon}</div>
+              <div style={{ marginBottom: 12 }}>
+                <span style={{
+                  display: 'inline-block',
+                  padding: '4px 10px',
+                  borderRadius: 100,
+                  fontSize: 12,
+                  fontWeight: 600,
+                  background: featured ? 'rgba(0,87,255,0.25)' : 'var(--blue-100)',
+                  color: featured ? '#7EB3FF' : 'var(--blue-600)',
+                  letterSpacing: '0.04em',
+                }}>
+                  {tag}
+                </span>
               </div>
+              <h3 style={{
+                fontSize: 20,
+                fontWeight: 700,
+                color: featured ? '#fff' : 'var(--navy-900)',
+                marginBottom: 12,
+                letterSpacing: '-0.02em',
+              }}>{title}</h3>
+              <p style={{ color: featured ? 'rgba(255,255,255,0.75)' : undefined }}>{desc}</p>
             </div>
           ))}
         </div>

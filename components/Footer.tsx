@@ -1,8 +1,8 @@
 const COLS = [
-  { h:'Solutions',  links:['Fleet Cameras','GPS Tracking','AI Dashcam','Driver Safety','Cloud Storage','RUC Reporting'] },
-  { h:'Industries', links:['Construction','Transport & Logistics','Corporate Fleets','Emergency Services','Delivery','Utilities'] },
-  { h:'Company',    links:['About Us','Pricing','Blog','Case Studies','Careers','Contact'] },
-  { h:'Support',    links:['Help Centre','Installation Guides','API Documentation','System Status','Privacy Policy','Terms of Service'] },
+  { h:'Products',   links:['X1N — Light Vehicles','X3N — All Round','X5N — Heavy Vehicles','AI SmartView','IPD Pedestrian Camera'] },
+  { h:'Features',   links:['Telematics','Live Video Streaming','GPS Tracking','Geo-fencing','Evidence Centre','CEIBA2 Software'] },
+  { h:'Company',    links:['About Us','News','Contact'] },
+  { h:'Support',    links:['Download CEIBA2','Download VPlayer2','Privacy Policy'] },
 ];
 
 const SOCIAL = [
@@ -27,7 +27,8 @@ export default function Footer() {
               </svg>
               <span className="logo-text">Cloud<strong>Cam</strong></span>
             </a>
-            <p>Smart fleet cameras and GPS tracking for New Zealand businesses. Protect your vehicles, drivers, and profits.</p>
+            <p>Advanced safety camera systems for New Zealand. Improving driver and road safety through intelligent AI monitoring and telematics.</p>
+            <p style={{fontSize:13, marginTop:8}}>309 Rosebank Road, Avondale,<br/>Auckland 1026, New Zealand</p>
             <div className="footer-social">
               {SOCIAL.map(({ label, d }) => (
                 <a key={label} href="#" aria-label={label}>
@@ -48,7 +49,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <p>© 2025 CloudCam Ltd. All rights reserved. Made with ❤️ in New Zealand.</p>
+          <p>© 2023 Cloud Cam Limited. All rights reserved. Auckland, New Zealand.</p>
           <div className="footer-bottom-links">
             <a href="#">Privacy</a>
             <a href="#">Terms</a>

@@ -2,10 +2,10 @@
 import { useEffect, useState } from 'react';
 
 const DROPDOWN_ITEMS = [
-  { icon: '📹', title: 'Fleet Cameras',  sub: 'Live cloud video streaming' },
-  { icon: '📍', title: 'GPS Tracking',   sub: 'Real-time vehicle location' },
-  { icon: '🤖', title: 'AI Dashcam',     sub: 'Driver behaviour analytics' },
-  { icon: '☁️', title: 'Cloud Storage',  sub: 'Secure footage archive' },
+  { icon: '🚗', title: 'X1N — Light Vehicles',   sub: '4 AHD + 1 IPC channel, 4G/LTE' },
+  { icon: '🚐', title: 'X3N — All Round',         sub: '4 AHD + 4 IPC channel, AI ready' },
+  { icon: '🚛', title: 'X5N — Heavy Vehicles',    sub: '8 AHD channels, full AI integration' },
+  { icon: '🤖', title: 'AI SmartView',            sub: 'Driver behaviour & pedestrian AI' },
 ];
 
 export default function Header() {
@@ -42,20 +42,20 @@ export default function Header() {
         {/* Desktop Links */}
         <ul className={`nav-links${menuOpen ? ' nav-links-open' : ''}`}>
           <li className="nav-item">
-            <a href="#features" className="nav-link" onClick={close}>
-              Solutions
+            <a href="#products" className="nav-link" onClick={close}>
+              AI in Vehicles
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 5L6 8L9 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
             </a>
             <div className="dropdown">
               {DROPDOWN_ITEMS.map(({ icon, title, sub }) => (
-                <a href="#features" key={title} className="dropdown-link">
+                <a href="#products" key={title} className="dropdown-link">
                   <span className="dropdown-icon">{icon}</span>
                   <div><strong>{title}</strong><span>{sub}</span></div>
                 </a>
               ))}
             </div>
           </li>
-          {[['#features','Features'],['#pricing','Pricing'],['#about','About'],['#contact','Resources']].map(([href,label]) => (
+          {[['#products','Products'],['#telematics','Telematics'],['#about','About'],['#contact','Contact']].map(([href,label]) => (
             <li key={href} className="nav-item">
               <a href={href} className="nav-link" onClick={close}>{label}</a>
             </li>
@@ -64,8 +64,8 @@ export default function Header() {
 
         {/* Desktop Actions */}
         <div className="nav-actions">
-          <a href="#" className="btn btn-ghost">Sign In</a>
-          <a href="#contact" className="btn btn-primary">Book a Demo</a>
+          <a href="#contact" className="btn btn-ghost">Download</a>
+          <a href="#contact" className="btn btn-primary">Get in Touch</a>
         </div>
 
         {/* Hamburger */}

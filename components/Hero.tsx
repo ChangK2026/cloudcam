@@ -10,31 +10,31 @@ export default function Hero() {
       <div>
         <div className="hero-badge">
           <span className="badge-dot" />
-          New Zealand&apos;s #1 Fleet Camera Platform
+          Auckland, New Zealand — Cloud Cam Limited
         </div>
         <h1 className="hero-title">
-          See Every Road.<br />
-          Protect Every <span className="text-gradient">Vehicle.</span>
+          Advanced Safety<br />
+          <span className="text-gradient">Camera Systems</span>
         </h1>
         <p className="hero-subtitle">
-          Cloud-based fleet cameras, live GPS tracking, and AI driver safety — all in one powerful platform built for NZ businesses.
+          Improving driver and road safety with AI-powered dashcams, live telematics, and intelligent fleet management — purpose-built for New Zealand.
         </p>
         <div className="hero-cta">
-          <a href="#contact" className="btn btn-primary btn-lg">Book a Free Demo</a>
-          <a href="#features" className="btn btn-outline btn-lg">
+          <a href="#contact" className="btn btn-primary btn-lg">Get in Touch</a>
+          <a href="#products" className="btn btn-outline btn-lg">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="1.5"/>
               <path d="M8 7.5L13 10L8 12.5V7.5Z" fill="currentColor"/>
             </svg>
-            See How It Works
+            View Products
           </a>
         </div>
         <div className="hero-stats">
           {[
-            { v: '5,000+', l: 'Vehicles Tracked' },
-            { v: '500+',   l: 'NZ Businesses' },
-            { v: '99.9%',  l: 'Uptime SLA' },
-            { v: '24/7',   l: 'NZ Support' },
+            { v: '1080P', l: 'HD Recording' },
+            { v: '4G/LTE', l: 'Live Streaming' },
+            { v: 'AI', l: 'Driver Monitoring' },
+            { v: '16', l: 'Camera Channels' },
           ].map(({ v, l }, i) => (
             <>
               {i > 0 && <div key={`d${i}`} className="hero-stat-divider" />}
