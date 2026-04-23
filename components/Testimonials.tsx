@@ -1,24 +1,30 @@
-// AI behaviour detection features as highlight cards (no real testimonials on site)
-const HIGHLIGHTS = [
+const AI_FEATURES = [
   {
-    icon: '🚫',
-    title: 'Phone Usage Detection',
-    desc: 'SmartView AI automatically detects when a driver picks up or uses their phone while driving, triggering an immediate in-cab alert.',
+    icon: '📵',
+    title: 'Phone Detection',
+    desc: 'AI SmartView instantly detects when a driver picks up or uses a mobile phone while driving and issues an immediate in-cab alert to prevent distracted driving.',
     tag: 'AI SmartView',
     featured: false,
   },
   {
     icon: '😴',
-    title: 'Fatigue & Drowsiness Monitoring',
-    desc: 'Continuous monitoring for yawning, eye closure, and head nodding. Alerts are issued before drowsiness becomes a serious safety risk on the road.',
+    title: 'Yawning & Fatigue Detection',
+    desc: 'Continuous facial monitoring detects yawning and signs of drowsiness in real-time, alerting drivers and fleet managers before fatigue becomes a road safety risk.',
     tag: 'AI SmartView',
     featured: true,
   },
   {
-    icon: '🚶',
-    title: 'Pedestrian Detection',
-    desc: 'IPD cameras detect pedestrians — sitting, standing, or cycling — at 0.5 to 12 metres, giving drivers and operators real-time proximity warnings.',
-    tag: 'IPD Camera',
+    icon: '👁️',
+    title: 'Driver Distraction',
+    desc: 'SmartView monitors driver attention and detects distracted behaviour — looking away from the road, inattention, and loss of focus — triggering warnings immediately.',
+    tag: 'AI SmartView',
+    featured: false,
+  },
+  {
+    icon: '🚬',
+    title: 'Smoking Detection',
+    desc: 'The AI camera identifies smoking behaviour in the cab and flags violations automatically, helping fleet operators enforce no-smoking policies across their fleet.',
+    tag: 'AI SmartView',
     featured: false,
   },
 ];
@@ -28,14 +34,18 @@ export default function Testimonials() {
     <section className="testimonials section">
       <div className="container">
         <div className="section-header">
-          <div className="section-tag">AI Safety Features</div>
-          <h2 className="section-title">Intelligence built into<br/>every camera</h2>
-          <p className="section-subtitle">CloudCam&apos;s AI SmartView system monitors up to 16 camera feeds simultaneously, detecting dangerous behaviours before they become incidents.</p>
+          <div className="section-tag">AI in Vehicles</div>
+          <h2 className="section-title">Improving both Driver<br/>and Road Safety</h2>
+          <p className="section-subtitle">
+            CloudCam&apos;s AI SmartView camera system detects dangerous driver behaviours in real-time —
+            reducing incidents before they happen and keeping your fleet compliant and safe.
+          </p>
         </div>
-        <div className="testi-grid">
-          {HIGHLIGHTS.map(({ icon, title, desc, tag, featured }) => (
+
+        <div className="ai-features-grid">
+          {AI_FEATURES.map(({ icon, title, desc, tag, featured }) => (
             <div key={title} className={`testi-card${featured ? ' testi-featured' : ''}`}>
-              <div style={{ fontSize: 40, marginBottom: 16 }}>{icon}</div>
+              <div style={{ fontSize: 38, marginBottom: 14 }}>{icon}</div>
               <div style={{ marginBottom: 12 }}>
                 <span style={{
                   display: 'inline-block',
@@ -43,7 +53,7 @@ export default function Testimonials() {
                   borderRadius: 100,
                   fontSize: 12,
                   fontWeight: 600,
-                  background: featured ? 'rgba(0,87,255,0.25)' : 'var(--blue-100)',
+                  background: featured ? 'rgba(27,60,143,0.25)' : 'var(--blue-100)',
                   color: featured ? '#7EB3FF' : 'var(--blue-600)',
                   letterSpacing: '0.04em',
                 }}>
@@ -51,15 +61,25 @@ export default function Testimonials() {
                 </span>
               </div>
               <h3 style={{
-                fontSize: 20,
+                fontSize: 19,
                 fontWeight: 700,
                 color: featured ? '#fff' : 'var(--navy-900)',
-                marginBottom: 12,
+                marginBottom: 10,
                 letterSpacing: '-0.02em',
               }}>{title}</h3>
-              <p style={{ color: featured ? 'rgba(255,255,255,0.75)' : undefined }}>{desc}</p>
+              <p style={{ fontSize: 14, color: featured ? 'rgba(255,255,255,0.75)' : undefined }}>{desc}</p>
             </div>
           ))}
+        </div>
+
+        {/* Evidence Centre callout */}
+        <div className="ai-evidence-bar">
+          <div className="ai-evidence-icon">🗂️</div>
+          <div className="ai-evidence-text">
+            <strong>Evidence Centre</strong>
+            <span>All AI-triggered events are stored in a centralised Evidence Centre — capturing images, timestamps, upload records, and vehicle data for every incident, fully accessible online.</span>
+          </div>
+          <a href="#contact" className="btn btn-outline">Learn More</a>
         </div>
       </div>
     </section>

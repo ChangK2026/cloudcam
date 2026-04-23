@@ -1,124 +1,49 @@
+import Image from 'next/image';
+
 export default function Hero() {
   return (
     <section className="hero">
-      <div className="hero-bg">
-        <div className="hero-gradient" />
-        <div className="hero-grid" />
+      {/* ── Full-bleed background image ── */}
+      <div className="hero-bg-img">
+        <Image
+          src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1800&q=80"
+          alt="Truck on highway"
+          fill
+          style={{ objectFit: 'cover', objectPosition: 'center center' }}
+          priority
+        />
       </div>
 
-      {/* Left: Content */}
-      <div>
-        <div className="hero-badge">
-          <span className="badge-dot" />
-          Auckland, New Zealand — Cloud Cam Limited
-        </div>
-        <h1 className="hero-title">
-          Advanced Safety<br />
-          <span className="text-gradient">Camera Systems</span>
-        </h1>
-        <p className="hero-subtitle">
-          Improving driver and road safety with AI-powered dashcams, live telematics, and intelligent fleet management — purpose-built for New Zealand.
-        </p>
-        <div className="hero-cta">
-          <a href="#contact" className="btn btn-primary btn-lg">Get in Touch</a>
-          <a href="#products" className="btn btn-outline btn-lg">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="1.5"/>
-              <path d="M8 7.5L13 10L8 12.5V7.5Z" fill="currentColor"/>
-            </svg>
-            View Products
-          </a>
-        </div>
-        <div className="hero-stats">
-          {[
-            { v: '1080P', l: 'HD Recording' },
-            { v: '4G/LTE', l: 'Live Streaming' },
-            { v: 'AI', l: 'Driver Monitoring' },
-            { v: '16', l: 'Camera Channels' },
-          ].map(({ v, l }, i) => (
-            <>
-              {i > 0 && <div key={`d${i}`} className="hero-stat-divider" />}
-              <div key={l} className="hero-stat">
-                <strong>{v}</strong>
-                <span>{l}</span>
-              </div>
-            </>
-          ))}
-        </div>
-      </div>
+      {/* ── Dark gradient overlay ── */}
+      <div className="hero-overlay" />
 
-      {/* Right: Dashboard Mockup */}
-      <div className="hero-visual">
-        <div className="mockup">
-          {/* Title bar */}
-          <div className="mockup-bar">
-            <div className="mockup-dots"><span/><span/><span/></div>
-            <span className="mockup-title">CloudCam Dashboard</span>
-            <span className="mockup-live"><span className="live-dot"/>LIVE</span>
+      {/* ── Copy ── */}
+      <div className="hero-inner container">
+        <div className="hero-copy">
+          <div className="hero-eyebrow">
+            <span className="eyebrow-dot" />
+            Cloud Cam Limited — Auckland, NZ
           </div>
-          {/* Body */}
-          <div className="mockup-body">
-            {/* Sidebar */}
-            <div className="mockup-sidebar">
-              {[
-                { label: 'Fleet', active: true, icon: (
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <rect x="2" y="2" width="5" height="5" rx="1" fill="currentColor"/>
-                    <rect x="9" y="2" width="5" height="5" rx="1" fill="currentColor"/>
-                    <rect x="2" y="9" width="5" height="5" rx="1" fill="currentColor"/>
-                    <rect x="9" y="9" width="5" height="5" rx="1" fill="currentColor"/>
-                  </svg>
-                )},
-                { label: 'Map', active: false, icon: (
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6C3.5 9 8 14.5 8 14.5C8 14.5 12.5 9 12.5 6C12.5 3.5 10.5 1.5 8 1.5Z" stroke="currentColor" strokeWidth="1.3"/>
-                    <circle cx="8" cy="6" r="1.5" fill="currentColor"/>
-                  </svg>
-                )},
-                { label: 'Reports', active: false, icon: (
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <rect x="2" y="3" width="12" height="2" rx="1" fill="currentColor"/>
-                    <rect x="2" y="7" width="8" height="2" rx="1" fill="currentColor"/>
-                    <rect x="2" y="11" width="10" height="2" rx="1" fill="currentColor"/>
-                  </svg>
-                )},
-              ].map(({ label, active, icon }) => (
-                <div key={label} className={`sidebar-item${active ? ' sidebar-active' : ''}`}>
-                  {icon}{label}
-                </div>
-              ))}
-            </div>
-            {/* Main */}
-            <div className="mockup-main">
-              <div className="mockup-map">
-                <div className="map-grid" />
-                {[
-                  { cls: 'mv1', icon: '🚚', label: 'VH-001' },
-                  { cls: 'mv2', icon: '🚐', label: 'VH-004' },
-                  { cls: 'mv3', icon: '🚛', label: 'VH-007' },
-                ].map(({ cls, icon, label }) => (
-                  <div key={cls} className={`map-vehicle ${cls}`}>
-                    <div className="vehicle-icon">{icon}</div>
-                    <div className="vehicle-label">{label}</div>
-                  </div>
-                ))}
-                <div className="map-ping mp1" />
-                <div className="map-ping mp2" />
-              </div>
-              <div className="mockup-cards">
-                {[
-                  { label: 'Active Vehicles', value: '24', sub: '/28', badge: 'online', text: 'Online' },
-                  { label: 'Alerts Today',    value: '3',  sub: '',    badge: 'warn',   text: 'Review' },
-                  { label: 'Safety Score',    value: '94', sub: '%',   badge: 'good',   text: 'Good' },
-                ].map(({ label, value, sub, badge, text }) => (
-                  <div key={label} className="stat-card">
-                    <span className="stat-card-label">{label}</span>
-                    <span className="stat-card-value">{value}<span className="stat-card-sub">{sub}</span></span>
-                    <span className={`stat-badge badge-${badge}`}>{text}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+
+          <h1 className="hero-title">
+            Advanced Safety<br />
+            <span className="hero-title-gradient">Camera Systems</span><br />
+            for Every Vehicle.
+          </h1>
+
+          <p className="hero-subtitle">
+            AI-powered dashcams, live 4G/LTE telematics, and intelligent driver monitoring — protecting drivers and roads across New Zealand.
+          </p>
+
+          <div className="hero-cta">
+            <a href="#contact" className="btn btn-primary btn-lg">Get in Touch</a>
+            <a href="#products" className="btn btn-outline-white btn-lg">View Products</a>
+          </div>
+
+          <div className="hero-pills">
+            {['1080P HD', '4G/LTE Live', 'AI SmartView', 'Pedestrian Detection', 'GPS Tracking'].map(p => (
+              <span key={p} className="hero-pill">{p}</span>
+            ))}
           </div>
         </div>
       </div>

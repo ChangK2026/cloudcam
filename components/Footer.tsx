@@ -1,3 +1,4 @@
+import Image from 'next/image';
 const COLS = [
   { h:'Products',   links:['X1N — Light Vehicles','X3N — All Round','X5N — Heavy Vehicles','AI SmartView','IPD Pedestrian Camera'] },
   { h:'Features',   links:['Telematics','Live Video Streaming','GPS Tracking','Geo-fencing','Evidence Centre','CEIBA2 Software'] },
@@ -19,13 +20,7 @@ export default function Footer() {
         <div className="footer-top">
           <div className="footer-brand">
             <a href="#" className="nav-logo">
-              <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-                <rect width="32" height="32" rx="8" fill="#0057FF"/>
-                <path d="M6 11C6 9.9 6.9 9 8 9H20L26 13V23C26 24.1 25.1 25 24 25H8C6.9 25 6 24.1 6 23V11Z" fill="white" fillOpacity=".15" stroke="white" strokeWidth="1.5"/>
-                <circle cx="16" cy="17" r="3.5" fill="white"/>
-                <circle cx="16" cy="17" r="1.5" fill="#0057FF"/>
-              </svg>
-              <span className="logo-text">Cloud<strong>Cam</strong></span>
+              <Image src="/logo.png" alt="CloudCam" width={140} height={23} className="footer-logo-img" />
             </a>
             <p>Advanced safety camera systems for New Zealand. Improving driver and road safety through intelligent AI monitoring and telematics.</p>
             <p style={{fontSize:13, marginTop:8}}>309 Rosebank Road, Avondale,<br/>Auckland 1026, New Zealand</p>

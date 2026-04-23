@@ -1,3 +1,4 @@
+import Image from 'next/image';
 // Real CloudCam product features based on cloudcam.co.nz
 const FEATURES = [
   {
@@ -53,6 +54,17 @@ export default function Features() {
         <div className="features-grid">
           {FEATURES.map(({ large, title, desc, list, icon }) => (
             <div key={title} className={`feature-card${large ? ' feature-large' : ''}`}>
+              {large && (
+                <div className="feature-img-wrap">
+                  <Image
+                    src="https://lh3.googleusercontent.com/sitesv/APaQ0SQHf52WLVOe7mzQhm1mrUlqk9eE_GzO_PGTkjnJD2YOtvq8Sw5R6YDe035_OwVxlP3NbVkmBHYJsAHYZHCzEjq064r0hnCg3LFPl_e-m-TH7unsv_Ff9PV-fLU86cptOkGV-OYYIeWM5E7dEXDClGgeDaBjHAo5Tl9_nJss328ZzMlYSi8FzlV9v1fpdfYEERCtAiXqPdHQH-0AuhRPqj9cFK4MtM267cEqGPg=w800"
+                    alt="CloudCam telematics fleet management"
+                    width={800}
+                    height={220}
+                    style={{ width: '100%', height: 220, objectFit: 'cover', borderRadius: 8, marginBottom: 20 }}
+                  />
+                </div>
+              )}
               <div className="feature-icon">{icon}</div>
               <h3>{title}</h3>
               <p>{desc}</p>

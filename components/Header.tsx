@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 const DROPDOWN_ITEMS = [
   { icon: '🚗', title: 'X1N — Light Vehicles',   sub: '4 AHD + 1 IPC channel, 4G/LTE' },
@@ -30,13 +31,7 @@ export default function Header() {
       <nav className="nav container">
         {/* Logo */}
         <a href="#" className="nav-logo">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <rect width="32" height="32" rx="8" fill="#0057FF"/>
-            <path d="M6 11C6 9.9 6.9 9 8 9H20L26 13V23C26 24.1 25.1 25 24 25H8C6.9 25 6 24.1 6 23V11Z" fill="white" fillOpacity=".15" stroke="white" strokeWidth="1.5"/>
-            <circle cx="16" cy="17" r="3.5" fill="white"/>
-            <circle cx="16" cy="17" r="1.5" fill="#0057FF"/>
-          </svg>
-          <span className="logo-text">Cloud<strong>Cam</strong></span>
+          <Image src="/logo.png" alt="CloudCam" width={160} height={26} className="nav-logo-img" priority />
         </a>
 
         {/* Desktop Links */}

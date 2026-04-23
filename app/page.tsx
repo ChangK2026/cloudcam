@@ -5,7 +5,6 @@ import Features    from '@/components/Features';
 import Benefits    from '@/components/Benefits';
 import Stats       from '@/components/Stats';
 import Solutions   from '@/components/Solutions';
-import Pricing     from '@/components/Pricing';
 import Testimonials from '@/components/Testimonials';
 import CTABanner   from '@/components/CTABanner';
 import Contact     from '@/components/Contact';
@@ -22,7 +21,6 @@ export default function Home() {
         <Benefits />
         <Stats />
         <Solutions />
-        <Pricing />
         <Testimonials />
         <CTABanner />
         <Contact />
