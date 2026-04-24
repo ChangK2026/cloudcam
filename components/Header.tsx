@@ -50,7 +50,7 @@ export default function Header() {
               ))}
             </div>
           </li>
-          {[['#products','Products'],['#telematics','Telematics'],['#about','About'],['#contact','Contact']].map(([href,label]) => (
+          {[['#telematics','Telematics'],['#about','About'],['#contact','Contact']].map(([href,label]) => (
             <li key={href} className="nav-item">
               <a href={href} className="nav-link" onClick={close}>{label}</a>
             </li>
