@@ -6,8 +6,8 @@ export default function Hero() {
       {/* ── Full-bleed background image ── */}
       <div className="hero-bg-img">
         <Image
-          src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1800&q=80"
-          alt="Truck on highway"
+          src="/images/fleet-lineup.jpeg"
+          alt="Fleet of commercial vehicles"
           fill
           style={{ objectFit: 'cover', objectPosition: 'center center' }}
           priority

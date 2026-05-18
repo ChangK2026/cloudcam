@@ -1,9 +1,39 @@
 import Image from 'next/image';
 const COLS = [
-  { h:'Products',   links:['X1N — Light Vehicles','X3N — All Round','X5N — Heavy Vehicles','AI SmartView','IPD Pedestrian Camera'] },
-  { h:'Features',   links:['Telematics','Live Video Streaming','GPS Tracking','Geo-fencing','Evidence Centre','CEIBA2 Software'] },
-  { h:'Company',    links:['About Us','News','Contact'] },
-  { h:'Support',    links:['Download CEIBA2','Download VPlayer2','Privacy Policy'] },
+  {
+    h: 'Camera Systems',
+    links: [
+      { label: 'X1N — Light Vehicles',     href: '#products' },
+      { label: 'X3N — All-Round Coverage', href: '#products' },
+      { label: 'X5N — Heavy Vehicles',     href: '#products' },
+      { label: 'Custom Solutions',         href: '#products' },
+    ],
+  },
+  {
+    h: 'Fleet Platform',
+    links: [
+      { label: 'Telematics & GPS',   href: '#telematics' },
+      { label: 'AI SmartView',       href: '#ai-vehicles' },
+      { label: 'Evidence Centre',    href: '#evidence-centre' },
+      { label: 'Live Camera Views',  href: '#camera-views' },
+    ],
+  },
+  {
+    h: 'Company',
+    links: [
+      { label: 'About Us',      href: '#about' },
+      { label: 'Why CloudCam',  href: '#why-cloudcam' },
+      { label: 'Installations', href: '#installations' },
+      { label: 'Contact',       href: '#contact' },
+    ],
+  },
+  {
+    h: 'Legal',
+    links: [
+      { label: 'Privacy Policy', href: '#' },
+      { label: 'Terms of Use',   href: '#' },
+    ],
+  },
 ];
 
 const SOCIAL = [
@@ -37,18 +67,17 @@ export default function Footer() {
             {COLS.map(({ h, links }) => (
               <div key={h} className="footer-col">
                 <h4>{h}</h4>
-                <ul>{links.map(l => <li key={l}><a href="#">{l}</a></li>)}</ul>
+                <ul>{links.map(({ label, href }) => <li key={label}><a href={href}>{label}</a></li>)}</ul>
               </div>
             ))}
           </div>
         </div>
 
         <div className="footer-bottom">
-          <p>© 2023 Cloud Cam Limited. All rights reserved. Auckland, New Zealand.</p>
+          <p>© 2025 Cloud Cam Limited. All rights reserved. Auckland, New Zealand.</p>
           <div className="footer-bottom-links">
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-            <a href="#">Cookies</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
           </div>
         </div>
       </div>

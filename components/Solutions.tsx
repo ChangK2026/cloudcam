@@ -1,67 +1,98 @@
-const PRODUCTS = [
+const VEHICLES = [
   {
-    model: 'X1N',
-    name: 'Light Vehicles',
-    icon: '🚗',
-    color: 'blue',
-    desc: 'Purpose-built for cars, utes, and vans. Compact 4+1 channel DVR with full HD recording and cloud connectivity.',
-    features: [
-      '4 AHD channels (1080P)',
-      '1 IPC channel (1080P)',
-      'HDD recording',
-      '4G/LTE + GPS',
-      'AI Camera optional',
-      '3-axis inertia sensor',
-    ],
-    specs: [
-      { label: 'AHD Channels', value: '4 × 1080P' },
-      { label: 'IPC Channels', value: '1 × 1080P' },
-      { label: 'AI Integration', value: 'Optional' },
-    ],
-    ctaCls: 'btn-outline',
+    label: 'Cars & Utes',
+    icon: (
+      <svg width="44" height="28" viewBox="0 0 48 30" fill="none">
+        <path d="M4 22h40v4H4z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/>
+        <path d="M4 22l7-10h26l7 10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M15 12h18" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+        <circle cx="13" cy="26" r="3.5" stroke="currentColor" strokeWidth="1.6"/>
+        <circle cx="35" cy="26" r="3.5" stroke="currentColor" strokeWidth="1.6"/>
+      </svg>
+    ),
   },
   {
-    model: 'X3N',
-    name: 'All-Round Coverage',
-    icon: '🚐',
-    color: 'featured',
-    featured: true,
-    desc: 'Versatile 4+4 channel system for buses, SUVs, and mid-size fleets requiring comprehensive coverage.',
-    features: [
-      '4 AHD channels (1080P)',
-      '4 IPC channels (1080P)',
-      'HDD recording',
-      '4G/LTE + GPS',
-      'AI camera compatible',
-      '3-axis inertia sensor',
-    ],
-    specs: [
-      { label: 'AHD Channels', value: '4 × 1080P' },
-      { label: 'IPC Channels', value: '4 × 1080P' },
-      { label: 'AI Integration', value: '✓ Compatible' },
-    ],
-    ctaCls: 'btn-primary',
+    label: 'Vans & SUVs',
+    icon: (
+      <svg width="44" height="28" viewBox="0 0 48 30" fill="none">
+        <rect x="4" y="12" width="40" height="14" rx="2" stroke="currentColor" strokeWidth="1.8"/>
+        <path d="M4 20h40M18 12v-6h16l6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+        <circle cx="13" cy="26" r="3.5" stroke="currentColor" strokeWidth="1.6"/>
+        <circle cx="35" cy="26" r="3.5" stroke="currentColor" strokeWidth="1.6"/>
+      </svg>
+    ),
   },
   {
-    model: 'X5N',
-    name: 'Heavy Vehicles',
-    icon: '🚛',
-    color: 'blue',
-    desc: 'Enterprise-grade 8-channel DVR for trucks, heavy machinery, and large fleet vehicles with full AI safety.',
-    features: [
-      '8 AHD channels (1080P)',
-      'Expandable IPC channels',
-      'HDD recording',
-      '4G/LTE + GPS',
-      'Full AI integration',
-      '3-axis inertia sensor',
-    ],
-    specs: [
-      { label: 'AHD Channels', value: '8 × 1080P' },
-      { label: 'IPC Channels', value: 'Expandable' },
-      { label: 'AI Integration', value: '✓ Full' },
-    ],
-    ctaCls: 'btn-outline',
+    label: 'Heavy Trucks',
+    icon: (
+      <svg width="52" height="28" viewBox="0 0 56 30" fill="none">
+        <rect x="4" y="10" width="30" height="16" rx="1.5" stroke="currentColor" strokeWidth="1.8"/>
+        <rect x="36" y="14" width="16" height="12" rx="2" stroke="currentColor" strokeWidth="1.8"/>
+        <path d="M36 18l-2-4h14l4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <circle cx="12" cy="26" r="3.5" stroke="currentColor" strokeWidth="1.6"/>
+        <circle cx="24" cy="26" r="3.5" stroke="currentColor" strokeWidth="1.6"/>
+        <circle cx="44" cy="26" r="3.5" stroke="currentColor" strokeWidth="1.6"/>
+      </svg>
+    ),
+  },
+  {
+    label: 'Fuel Tankers',
+    icon: (
+      <svg width="52" height="28" viewBox="0 0 56 30" fill="none">
+        <ellipse cx="22" cy="18" rx="18" ry="9" stroke="currentColor" strokeWidth="1.8"/>
+        <rect x="40" y="14" width="12" height="10" rx="2" stroke="currentColor" strokeWidth="1.8"/>
+        <path d="M40 18l-2-4h10l2 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        <circle cx="12" cy="26" r="3" stroke="currentColor" strokeWidth="1.6"/>
+        <circle cx="32" cy="26" r="3" stroke="currentColor" strokeWidth="1.6"/>
+        <circle cx="46" cy="26" r="3" stroke="currentColor" strokeWidth="1.6"/>
+      </svg>
+    ),
+  },
+  {
+    label: 'Buses & Coaches',
+    icon: (
+      <svg width="52" height="28" viewBox="0 0 56 30" fill="none">
+        <rect x="4" y="8" width="48" height="18" rx="3" stroke="currentColor" strokeWidth="1.8"/>
+        <path d="M4 20h48M16 8v12M28 8v12M40 8v12" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+        <circle cx="13" cy="26" r="3.5" stroke="currentColor" strokeWidth="1.6"/>
+        <circle cx="43" cy="26" r="3.5" stroke="currentColor" strokeWidth="1.6"/>
+      </svg>
+    ),
+  },
+  {
+    label: 'Heavy Machinery',
+    icon: (
+      <svg width="44" height="28" viewBox="0 0 48 30" fill="none">
+        <rect x="4" y="16" width="24" height="10" rx="1.5" stroke="currentColor" strokeWidth="1.8"/>
+        <path d="M8 16V10l8-4 4 4v6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M20 16l16-10 4 6-14 8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+        <rect x="4" y="24" width="24" height="4" rx="1" stroke="currentColor" strokeWidth="1.4"/>
+      </svg>
+    ),
+  },
+  {
+    label: 'Ferries & Vessels',
+    icon: (
+      <svg width="52" height="28" viewBox="0 0 56 30" fill="none">
+        <path d="M6 22h44l-4 6H10l-4-6z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/>
+        <rect x="16" y="14" width="24" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.8"/>
+        <rect x="22" y="6" width="12" height="8" rx="1" stroke="currentColor" strokeWidth="1.6"/>
+        <path d="M28 4v2M22 10h12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+      </svg>
+    ),
+  },
+  {
+    label: 'Specialised Plant',
+    icon: (
+      <svg width="52" height="28" viewBox="0 0 56 30" fill="none">
+        <rect x="4" y="14" width="28" height="12" rx="1.5" stroke="currentColor" strokeWidth="1.8"/>
+        <path d="M32 20h10l6-8h4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+        <path d="M38 12l4-8 4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+        <rect x="4" y="24" width="28" height="4" rx="1" stroke="currentColor" strokeWidth="1.4"/>
+        <circle cx="12" cy="27" r="2" fill="currentColor"/>
+        <circle cx="24" cy="27" r="2" fill="currentColor"/>
+      </svg>
+    ),
   },
 ];
 
@@ -69,55 +100,91 @@ export default function Solutions() {
   return (
     <section className="solutions section" id="products">
       <div className="container">
-        <div className="section-header">
-          <div className="section-tag">DVR Camera Systems</div>
-          <h2 className="section-title">The right system<br/>for every vehicle</h2>
-          <p className="section-subtitle">
-            Three purpose-built DVR platforms covering light, medium, and heavy vehicles —
-            all with 1080P HD, 4G/LTE, GPS, and 3-axis inertia sensors.
-            <br /><span style={{ fontSize: 14, color: 'var(--gray-400)', marginTop: 6, display: 'block' }}>Contact us for pricing.</span>
-          </p>
+
+        {/* ── Intro split: copy + spec table ── */}
+        <div className="products-intro">
+          <div className="products-intro-copy">
+            <div className="section-tag">CCTV Systems</div>
+            <h2 className="section-title">The right system<br/>for every vehicle</h2>
+            <p>
+              Three purpose-built DVR platforms — X1N, X3N, and X5N — covering light,
+              medium, and heavy vehicles. All with 1080P HD recording, 4G/LTE live
+              streaming, GPS, and 3-axis inertia sensors as standard.
+            </p>
+            <a href="#contact" className="btn btn-outline">Contact Us for Pricing →</a>
+          </div>
+          <div>
+            <table className="compare-table">
+              <thead>
+                <tr>
+                  <th>Spec</th>
+                  <th>X1N</th>
+                  <th>X3N</th>
+                  <th>X5N</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>AHD Channels</td>
+                  <td>4 × 1080P</td>
+                  <td>4 × 1080P</td>
+                  <td>8 × 1080P</td>
+                </tr>
+                <tr>
+                  <td>IPC Channels</td>
+                  <td>1 × 1080P</td>
+                  <td>4 × 1080P</td>
+                  <td>Expandable</td>
+                </tr>
+                <tr>
+                  <td>AI Integration</td>
+                  <td>Optional</td>
+                  <td>Compatible</td>
+                  <td>Full</td>
+                </tr>
+                <tr>
+                  <td>Best For</td>
+                  <td>Light vehicles</td>
+                  <td>Buses & mid-size</td>
+                  <td>Heavy trucks</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
-        <div className="products-grid">
-          {PRODUCTS.map(({ model, name, icon, color, featured, desc, features, specs, ctaCls }) => (
-            <div key={model} className={`product-card product-card--${color}`}>
-              {featured && <div className="product-popular-badge">Most Popular</div>}
-              <div className="product-model-badge">{model}</div>
-              <div className="product-icon">{icon}</div>
-              <h3>{name}</h3>
-              <p className="product-desc">{desc}</p>
+        {/* ── Custom solutions band ── */}
+        <div className="custom-solutions reveal">
+          <div className="custom-solutions-header">
+            <div className="section-tag section-tag--light">Tailored for Your Fleet</div>
+            <h3 className="custom-solutions-title">
+              A custom solution for<br/>every vehicle and machine
+            </h3>
+            <p className="custom-solutions-desc">
+              No two fleets are the same. CloudCam supplies and installs purpose-configured
+              camera systems for every type of commercial vehicle and machinery — from standard
+              cars and utes to heavy haulage, fuel tankers, ferries, and specialist plant
+              equipment. Whatever your operation, we build the right system around it.
+            </p>
+          </div>
 
-              {/* Feature checklist */}
-              <ul className="product-specs" style={{ marginBottom: 20 }}>
-                {features.map(f => (
-                  <li key={f}>
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                      <path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-
-              {/* Spec comparison rows */}
-              <div className="product-spec-table">
-                {specs.map(({ label, value }) => (
-                  <div key={label} className="product-spec-row">
-                    <span className="spec-label">{label}</span>
-                    <span className="spec-value">{value}</span>
-                  </div>
-                ))}
-                <div className="product-spec-row">
-                  <span className="spec-label">Pricing</span>
-                  <span className="spec-value spec-value--contact">Contact us</span>
-                </div>
+          <div className="vehicles-grid">
+            {VEHICLES.map(({ label, icon }) => (
+              <div key={label} className="vehicle-tile">
+                <div className="vehicle-tile-icon">{icon}</div>
+                <span>{label}</span>
               </div>
+            ))}
+          </div>
 
-              <a href="#contact" className={`btn ${ctaCls} btn-full`} style={{ marginTop: 24 }}>Get a Quote</a>
-            </div>
-          ))}
+          <div className="custom-solutions-cta">
+            <p>
+              Tell us what you need — we'll configure the perfect camera system for your operation.
+            </p>
+            <a href="#contact" className="btn btn-primary btn-lg">Get in Touch →</a>
+          </div>
         </div>
+
       </div>
     </section>
   );
