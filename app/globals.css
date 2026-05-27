@@ -30,6 +30,7 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+[id] { scroll-margin-top: 90px; }
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-size: 17px;
@@ -91,8 +92,13 @@ img { max-width: 100%; display: block; }
 /* ── HEADER ── */
 .header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  background: rgba(255,255,255,.92); backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--gray-200); transition: box-shadow var(--ease);
+}
+/* backdrop-filter on pseudo-element so position:fixed children stay viewport-relative */
+.header::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: rgba(255,255,255,.92); backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 .header-scrolled { box-shadow: var(--shadow-md); }
 .nav { display: flex; align-items: center; gap: 32px; height: 72px; }
@@ -110,10 +116,10 @@ img { max-width: 100%; display: block; }
 }
 .nav-link:hover { color: var(--navy-900); background: var(--gray-100); }
 .dropdown {
-  position: absolute; top: calc(100% + 8px); left: 50%;
+  position: absolute; top: 100%; left: 50%;
   transform: translateX(-50%) translateY(8px);
   background: var(--white); border: 1px solid var(--gray-200);
-  border-radius: var(--r-lg); padding: 8px; min-width: 280px;
+  border-radius: var(--r-lg); padding: 8px; padding-top: 16px; min-width: 280px;
   box-shadow: var(--shadow-lg); opacity: 0; pointer-events: none; transition: all var(--ease);
 }
 .nav-item:hover .dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
@@ -129,6 +135,10 @@ img { max-width: 100%; display: block; }
 .hamburger-open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
 .hamburger-open span:nth-child(2) { opacity: 0; }
 .hamburger-open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+/* Hidden checkbox — toggled only by the hamburger label */
+.nav-toggle-input { position: absolute; opacity: 0; pointer-events: none; width: 0; height: 0; }
+/* Hamburger tap highlight off */
+.hamburger { -webkit-tap-highlight-color: transparent; }
 
 /* ── HERO ── */
 .hero {
@@ -658,10 +668,20 @@ img { max-width: 100%; display: block; }
   margin-bottom: 24px;
 }
 .footage-live-dot {
-  width: 7px; height: 7px; background: #EF4444; border-radius: 50%;
+  width: 11px; height: 11px; background: #EF4444; border-radius: 50%;
+  position: relative; flex-shrink: 0;
   animation: liveBlink 1.4s ease-in-out infinite;
 }
-@keyframes liveBlink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.25;transform:scale(.65)} }
+.footage-live-dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid #EF4444;
+  animation: livePulse 1.4s ease-in-out infinite;
+}
+@keyframes liveBlink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.35;transform:scale(.7)} }
+@keyframes livePulse { 0%,100%{opacity:.6;transform:scale(1)} 50%{opacity:0;transform:scale(1.8)} }
 
 /* Stats bar */
 .footage-stats-bar {
@@ -861,16 +881,48 @@ img { max-width: 100%; display: block; }
 @media (max-width:900px) {
   .features-intro-layout { grid-template-columns: 1fr; gap: 40px; }
   .products-intro { grid-template-columns: 1fr; gap: 40px; margin-bottom: 40px; padding-bottom: 40px; }
-  /* Nav */
+  /* Mobile nav — React state (.nav-open class) instead of CSS :checked.
+     Avoids iOS Safari bug where programmatic cb.checked=false doesn't update :checked. */
   .nav-links { display:none; }
-  .hamburger { display:flex; }
-  .nav-links-open {
-    display:flex !important; flex-direction:column;
-    position:fixed; inset:72px 0 0;
-    background:var(--white); padding:24px; gap:4px;
-    overflow-y:auto; z-index:999; border-top:1px solid var(--gray-200);
+  .hamburger { display:flex; cursor:pointer; border:none; background:none; }
+
+  .nav-links.nav-open {
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    position:fixed;
+    top:72px; left:0; right:0;
+    width:100vw;
+    margin:0; padding:0 0 16px; gap:0; list-style:none;
+    background:var(--white);
+    box-shadow: 0 8px 32px rgba(0,0,0,.15);
+    border-top:1px solid var(--gray-200);
+    z-index: 999;
   }
-  .nav-links-open .nav-link { padding:16px; font-size:16px; border-bottom:1px solid var(--gray-100); border-radius:0; }
+  .nav-links.nav-open .nav-item { width:100%; margin:0; padding:0; }
+  .nav-links.nav-open .nav-link {
+    box-sizing:border-box; display:flex; width:100%;
+    padding:15px 20px; font-size:16px; font-weight:500;
+    border-bottom:1px solid var(--gray-100); border-radius:0;
+    justify-content:flex-start; align-items:center;
+    text-align:left; color:var(--navy-900); margin:0;
+  }
+  .nav-links.nav-open .dropdown {
+    display:flex; flex-direction:column;
+    position:static; transform:none; opacity:1; pointer-events:auto;
+    box-shadow:none; border:none; border-radius:0;
+    background:var(--gray-50); padding:4px 0 8px; margin:0;
+    min-width:unset; width:100%;
+  }
+  .nav-links.nav-open .dropdown-link {
+    box-sizing:border-box; width:100%;
+    padding:11px 20px 11px 44px; border-radius:0; margin:0;
+  }
+  .nav-links.nav-open .dropdown-link strong { font-size:14px; }
+  .nav-links.nav-open .dropdown-link span { font-size:12px; }
+  .hamburger-open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+  .hamburger-open span:nth-child(2) { opacity:0; }
+  .hamburger-open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
   .dropdown { display:none; }
 
   /* Hero */

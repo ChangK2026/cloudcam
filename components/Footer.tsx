@@ -6,7 +6,7 @@ const COLS = [
       { label: 'X1N — Light Vehicles',     href: '#products' },
       { label: 'X3N — All-Round Coverage', href: '#products' },
       { label: 'X5N — Heavy Vehicles',     href: '#products' },
-      { label: 'Custom Solutions',         href: '#products' },
+      { label: 'Custom Solutions',         href: '#tailored' },
     ],
   },
   {

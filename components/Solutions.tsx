@@ -154,7 +154,7 @@ export default function Solutions() {
         </div>
 
         {/* ── Custom solutions band ── */}
-        <div className="custom-solutions reveal">
+        <div className="custom-solutions reveal" id="tailored">
           <div className="custom-solutions-header">
             <div className="section-tag section-tag--light">Tailored for Your Fleet</div>
             <h3 className="custom-solutions-title">

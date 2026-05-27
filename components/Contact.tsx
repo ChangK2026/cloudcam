@@ -2,13 +2,43 @@
 import { useState } from 'react';
 
 export default function Contact() {
-  const [done, setDone] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
 
-  const submit = (e: React.FormEvent<HTMLFormElement>) => {
+  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setDone(true);
-    setTimeout(() => { setDone(false); (e.target as HTMLFormElement).reset(); }, 4000);
+    setStatus('sending');
+
+    const form = e.target as HTMLFormElement;
+    const data = {
+      firstName: (form.elements.namedItem('firstName') as HTMLInputElement).value,
+      lastName:  (form.elements.namedItem('lastName')  as HTMLInputElement).value,
+      email:     (form.elements.namedItem('email')     as HTMLInputElement).value,
+      phone:     (form.elements.namedItem('phone')     as HTMLInputElement).value,
+      message:   (form.elements.namedItem('message')   as HTMLInputElement).value,
+    };
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        setStatus('done');
+        form.reset();
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 4000);
+      }
+    } catch {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 4000);
+    }
   };
+
+  const isBusy = status === 'sending';
 
   return (
     <section className="contact section" id="contact">
@@ -46,52 +76,39 @@ export default function Contact() {
               <div className="form-row">
                 <div className="form-group">
                   <label>First Name</label>
-                  <input type="text" placeholder="John" required />
+                  <input name="firstName" type="text" placeholder="John" required />
                 </div>
                 <div className="form-group">
                   <label>Last Name</label>
-                  <input type="text" placeholder="Smith" required />
+                  <input name="lastName" type="text" placeholder="Smith" required />
                 </div>
               </div>
               <div className="form-group">
                 <label>Email</label>
-                <input type="email" placeholder="john@company.co.nz" required />
+                <input name="email" type="email" placeholder="john@company.co.nz" required />
               </div>
               <div className="form-group">
                 <label>Phone</label>
-                <input type="tel" placeholder="+64 21 000 0000" />
-              </div>
-              <div className="form-group">
-                <label>Product Interest</label>
-                <div className="select-wrap">
-                  <select defaultValue="">
-                    <option value="" disabled>Select a product</option>
-                    <option>X1N — Light Vehicles</option>
-                    <option>X3N — All Round</option>
-                    <option>X5N — Heavy Vehicles</option>
-                    <option>AI SmartView</option>
-                    <option>IPD Pedestrian Camera</option>
-                    <option>Not sure — need advice</option>
-                  </select>
-                </div>
+                <input name="phone" type="tel" placeholder="+64 21 000 0000" />
               </div>
               <div className="form-group">
                 <label>Message</label>
-                <input type="text" placeholder="Tell us about your fleet..." />
+                <input name="message" type="text" placeholder="Tell us about your fleet..." />
               </div>
               <button
                 type="submit"
-                disabled={done}
+                disabled={isBusy}
                 className="btn btn-full btn-lg"
                 style={{
-                  background: done ? '#10B981' : 'var(--blue-600)',
+                  background: status === 'done' ? '#10B981' : status === 'error' ? '#EF4444' : 'var(--blue-600)',
                   color: 'white',
                   border: 'none',
-                  boxShadow: done ? '0 4px 14px rgba(16,185,129,.4)' : '0 4px 14px rgba(0,87,255,.35)',
+                  boxShadow: status === 'done' ? '0 4px 14px rgba(16,185,129,.4)' : '0 4px 14px rgba(0,87,255,.35)',
                   transition: 'all .3s ease',
+                  opacity: isBusy ? 0.7 : 1,
                 }}
               >
-                {done ? '✓ Message sent! We\'ll be in touch.' : 'Send Message'}
+                {status === 'sending' ? 'Sending…' : status === 'done' ? "✓ Message sent! We'll be in touch." : status === 'error' ? '✗ Failed — please try again' : 'Send Message'}
               </button>
               <p className="form-note">We&apos;ll respond within 1 business day.</p>
             </form>
