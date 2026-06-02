@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port 3001",
     "build": "next build",
     "start": "next start",
+    "ios": "pkill -f 'next start' 2>/dev/null; next build && next start --port 3001",
     "lint": "eslint"
   },
   "dependencies": {

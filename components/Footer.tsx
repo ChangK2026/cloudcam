@@ -30,7 +30,7 @@ const COLS = [
   {
     h: 'Legal',
     links: [
-      { label: 'Privacy Policy', href: '#' },
+      { label: 'Privacy Policy', href: '/privacy-policy' },
       { label: 'Terms of Use',   href: '#' },
     ],
   },
@@ -76,7 +76,7 @@ export default function Footer() {
         <div className="footer-bottom">
           <p>© 2025 Cloud Cam Limited. All rights reserved. Auckland, New Zealand.</p>
           <div className="footer-bottom-links">
-            <a href="#">Privacy Policy</a>
+            <a href="/privacy-policy">Privacy Policy</a>
             <a href="#">Terms of Use</a>
           </div>
         </div>

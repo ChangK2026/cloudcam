@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { type MouseEvent, useEffect, useState } from 'react';
 import Image from 'next/image';
 
 const PLATFORM_ITEMS = [
@@ -15,8 +15,44 @@ const SYSTEMS_ITEMS = [
 ];
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled,  setScrolled]  = useState(false);
+  const [menuOpen,  setMenuOpen]  = useState(false);
+
+  const getHeaderOffset = (hash = '') => {
+    const header = document.querySelector('.header');
+    const height = header?.getBoundingClientRect().height ?? 72;
+    if (window.innerWidth > 900) {
+      if (hash === '#tailored') return height + 10;
+      return height - 3;
+    }
+    return height - 10;
+  };
+
+  const scrollToHash = (hash: string) => {
+    const id = hash.replace(/^#/, '');
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    const offset = getHeaderOffset(hash);
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+
+    window.scrollTo({ top, behavior: 'smooth' });
+    window.history.pushState(null, '', hash);
+  };
+
+  const handleNavLinkClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    event.preventDefault();
+    setMenuOpen(false);
+
+    requestAnimationFrame(() => {
+      if (href === '#') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.history.pushState(null, '', '/');
+      } else {
+        scrollToHash(href);
+      }
+    });
+  };
 
   /* Header shadow on scroll */
   useEffect(() => {
@@ -25,72 +61,28 @@ export default function Header() {
     return () => window.removeEventListener('scroll', fn);
   }, []);
 
-  /**
-   * ARCHITECTURE
-   * ─────────────────────────────────────────────────────────────────
-   * Hamburger : <label htmlFor="nav-toggle"> — native iOS activation,
-   *             100 % confirmed working.  The checkbox fires 'change'
-   *             which we use to sync React state.
-   *
-   * Menu open : .nav-open CLASS (React state) — never depends on
-   *             CSS :checked, which iOS doesn't update programmatically.
-   *
-   * Menu close: setMenuOpen(false)  →  removes .nav-open class  →
-   *             display:none.  Also resets cb.checked so the NEXT
-   *             hamburger tap toggles correctly.
-   * ─────────────────────────────────────────────────────────────────
-   */
-  useEffect(() => {
-    const cb = document.getElementById('nav-toggle') as HTMLInputElement | null;
-    if (!cb) return;
-
-    /* Sync React state when native label activates the checkbox */
-    const onCbChange = () => setMenuOpen(cb.checked);
-    cb.addEventListener('change', onCbChange);
-
-    /* Close menu when a nav link is touched */
-    const onTouchStart = (e: TouchEvent) => {
-      if (!menuOpen) return;
-      if ((e.target as Element).closest('.nav-links')) {
-        setTimeout(() => {
-          setMenuOpen(false);
-          cb.checked = false; // reset property so next hamburger tap opens correctly
-        }, 300);
-      }
-    };
-    document.addEventListener('touchstart', onTouchStart, { passive: true });
-
-    return () => {
-      cb.removeEventListener('change', onCbChange);
-      document.removeEventListener('touchstart', onTouchStart);
-    };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [menuOpen]);
 
   return (
     <header className={`header${scrolled ? ' header-scrolled' : ''}`}>
       <nav className="nav container">
 
-        {/* Hidden checkbox — toggled exclusively by the hamburger label below */}
-        <input type="checkbox" id="nav-toggle" className="nav-toggle-input" />
-
-        <a href="#" className="nav-logo" onClick={() => setMenuOpen(false)}>
+        <a href="#" className="nav-logo" onClick={(event) => handleNavLinkClick(event, '#')}>
           <Image src="/logo.png" alt="CloudCam" width={160} height={26} className="nav-logo-img" priority />
         </a>
 
         {/* .nav-open class drives visibility — not CSS :checked */}
         <ul className={`nav-links${menuOpen ? ' nav-open' : ''}`}>
           <li className="nav-item">
-            <a href="#about" className="nav-link">About Us</a>
+            <a href="#about" className="nav-link" onClick={(event) => handleNavLinkClick(event, '#about')}>About Us</a>
           </li>
           <li className="nav-item">
-            <a href="#telematics" className="nav-link">
+            <a href="#telematics" className="nav-link" onClick={(event) => handleNavLinkClick(event, '#telematics')}>
               Fleet Platform
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 5L6 8L9 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
             </a>
             <div className="dropdown">
               {PLATFORM_ITEMS.map(({ icon, title, sub, href }) => (
-                <a href={href} key={title} className="dropdown-link">
+                <a href={href} key={title} className="dropdown-link" onClick={(event) => handleNavLinkClick(event, href)}>
                   <span className="dropdown-icon">{icon}</span>
                   <div><strong>{title}</strong><span>{sub}</span></div>
                 </a>
@@ -98,16 +90,16 @@ export default function Header() {
             </div>
           </li>
           <li className="nav-item">
-            <a href="#installations" className="nav-link">Installations</a>
+            <a href="#installations" className="nav-link" onClick={(event) => handleNavLinkClick(event, '#installations')}>Installations</a>
           </li>
           <li className="nav-item">
-            <a href="#products" className="nav-link">
+            <a href="#products" className="nav-link" onClick={(event) => handleNavLinkClick(event, '#products')}>
               Camera Systems
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 5L6 8L9 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
             </a>
             <div className="dropdown">
               {SYSTEMS_ITEMS.map(({ icon, title, sub, href }) => (
-                <a href={href} key={title} className="dropdown-link">
+                <a href={href} key={title} className="dropdown-link" onClick={(event) => handleNavLinkClick(event, href)}>
                   <span className="dropdown-icon">{icon}</span>
                   <div><strong>{title}</strong><span>{sub}</span></div>
                 </a>
@@ -115,18 +107,19 @@ export default function Header() {
             </div>
           </li>
           <li className="nav-item">
-            <a href="#contact" className="nav-link">Contact</a>
+            <a href="#contact" className="nav-link" onClick={(event) => handleNavLinkClick(event, '#contact')}>Contact</a>
           </li>
         </ul>
 
-        {/* Native label — the only mechanism confirmed to work on iOS */}
-        <label
-          htmlFor="nav-toggle"
+        <button
+          type="button"
           className={`hamburger${menuOpen ? ' hamburger-open' : ''}`}
           aria-label="Toggle menu"
+          onClick={() => setMenuOpen(prev => !prev)}
+          onTouchEnd={(e) => { e.preventDefault(); setMenuOpen(prev => !prev); }}
         >
           <span/><span/><span/>
-        </label>
+        </button>
 
       </nav>
     </header>
