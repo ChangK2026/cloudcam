@@ -53,7 +53,7 @@ export default function Contact() {
             <p>Our Auckland-based team is ready to help you find the right camera system for your fleet. Contact us to discuss your requirements or request a product demonstration.</p>
             <div className="contact-details">
               {[
-                { icon: '📍', text: '39 Ponderosa Drive, Oteha, Auckland 0632, New Zealand' },
+                { icon: '📍', text: 'PO Box 300131, Albany, Auckland 0752, New Zealand' },
                 { icon: '📞', text: '+64 (0)27 328 5916' },
                 { icon: '✉️', text: 'info@cloudcam.co.nz' },
               ].map(({ icon, text }) => (
