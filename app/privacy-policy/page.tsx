@@ -22,7 +22,7 @@ const SECTIONS = [
     content: [
       { type: 'p', text: 'Cloud Cam Limited is a New Zealand-registered company providing fleet camera systems, AI driver monitoring, GPS telematics, and related services to transport and logistics operators across New Zealand.' },
       { type: 'h', text: 'Registered Address' },
-      { type: 'p', text: '39 Ponderosa Drive, Oteha, Auckland 0632, New Zealand' },
+      { type: 'p', text: 'PO Box 300131, Albany, Auckland 0752, New Zealand' },
       { type: 'h', text: 'Privacy Contact' },
       { type: 'p', text: 'Email: privacy@cloudcam.co.nz' },
       { type: 'p', text: 'Phone: +64 (0)27 328 5916' },
@@ -97,8 +97,8 @@ const SECTIONS = [
       { type: 'p', text: 'Dashcam footage is stored on the vehicle\'s DVR unit and overwritten on a rolling basis as storage capacity is consumed. Retention duration depends on the installed storage size, recording resolution, and number of cameras — typically ranging from approximately 10 to 30 days under normal operating conditions.' },
       { type: 'h', text: 'Cloud storage' },
       { type: 'p', text: 'Where cloud upload is enabled, footage triggered by configured event settings (such as harsh braking, collision detection, or manual marking) is uploaded and retained on secure servers:' },
-      { type: 'li', text: 'Event-triggered footage: retained on the server until removed by the fleet operator, or for a maximum of 3 months' },
-      { type: 'li', text: 'User-uploaded footage: drivers or fleet operators may manually upload selected recordings to the server for review or evidence purposes; uploaded footage is retained for up to 3 months' },
+      { type: 'li', text: 'Event-triggered footage: retained on the server until removed by the fleet operator, or for a maximum of 3 months.' },
+      { type: 'li', text: 'User-uploaded footage: drivers or fleet operators may manually upload selected recordings to the server for review or evidence purposes; uploaded footage is retained for up to 3 months.' },
       { type: 'h', text: 'Contact & billing records' },
       { type: 'p', text: 'Customer and financial records are retained for as long as necessary to provide services, and a minimum of 7 years for financial and contractual records.' },
       { type: 'h', text: 'Storage location' },
@@ -188,7 +188,7 @@ const SECTIONS = [
     content: [
       { type: 'p', text: 'For any privacy-related enquiries, access requests, or complaints, please contact:' },
       { type: 'h', text: 'Cloud Cam Limited — Privacy Officer' },
-      { type: 'p', text: '39 Ponderosa Drive, Oteha, Auckland 0632, New Zealand' },
+      { type: 'p', text: 'PO Box 300131, Albany, Auckland 0752, New Zealand' },
       { type: 'p', text: 'Email: privacy@cloudcam.co.nz' },
       { type: 'p', text: 'Phone: +64 (0)27 328 5916' },
     ],

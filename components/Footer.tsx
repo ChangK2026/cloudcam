@@ -53,7 +53,7 @@ export default function Footer() {
               <Image src="/logo.png" alt="CloudCam" width={140} height={23} className="footer-logo-img" />
             </a>
             <p>Advanced safety camera systems for New Zealand. Improving driver and road safety through intelligent AI monitoring and telematics.</p>
-            <p style={{fontSize:13, marginTop:8}}>39 Ponderosa Drive, Oteha,<br/>Auckland 0632, New Zealand</p>
+            <p style={{fontSize:13, marginTop:8}}>PO Box 300131, Albany,<br/>Auckland 0752, New Zealand</p>
             <div className="footer-social">
               {SOCIAL.map(({ label, d }) => (
                 <a key={label} href="#" aria-label={label}>
