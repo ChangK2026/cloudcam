@@ -52,7 +52,7 @@ const VIEWS = {
     desc: 'Monitor driver behaviour, fatigue, and compliance in real-time. The AI SmartView camera tracks eye movement and alertness — even through sunglasses — triggering in-cab alerts the moment a risk is detected.',
     images: [
       { src: '/footage/incab-a-v2.jpg', caption: 'In-cab overview — driver position monitoring, 73 km/h' },
-      { src: '/footage/incab-b-v3.jpg', caption: 'AI SmartView — infrared eye tracking active, 66 km/h' },
+      { src: '/footage/incab-b-v3.jpg', caption: 'AI SmartView — infrared eye tracking active, 66 km/h', tag: 'AI-Driver' },
     ],
   },
 };
@@ -143,7 +143,7 @@ export default function CameraViews() {
                   {view.images.map(img => (
                     <div key={img.src} className="footage-item">
                       <div className="footage-item-inner">
-                        <span className="footage-cam-tag">{view.label}</span>
+                        <span className="footage-cam-tag">{img.tag ?? view.label}</span>
                         <Image
                           src={img.src}
                           alt={img.caption}
