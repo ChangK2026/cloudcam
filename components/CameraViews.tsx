@@ -1,6 +1,8 @@
 import Image from 'next/image';
 
-const VIEWS = {
+type FootageImage = { src: string; caption: string; tag?: string };
+
+const VIEWS: Record<string, { label: string; id: string; desc: string; images: FootageImage[] }> = {
   front:  {
     label: 'Forward Facing',
     id: 'cv-front',
