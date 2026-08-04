@@ -63,11 +63,6 @@ export default function Contact() {
                 </div>
               ))}
             </div>
-
-            <div style={{ marginTop: 32, padding: 20, background: 'var(--blue-50)', borderRadius: 'var(--r-lg)', border: '1px solid var(--blue-100)' }}>
-              <p style={{ fontSize: 14, color: 'var(--blue-600)', fontWeight: 600, marginBottom: 8 }}>📥 Software Downloads</p>
-              <p style={{ fontSize: 13, color: 'var(--gray-600)', marginBottom: 0 }}>CEIBA2 (Windows) and VPlayer2 are available for download. Contact us for access links.</p>
-            </div>
           </div>
 
           {/* Form */}
