@@ -1,4 +1,7 @@
+'use client';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+
 const COLS = [
   {
     h: 'Camera Systems',
@@ -44,12 +47,16 @@ const SOCIAL = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  const isHome = pathname === '/';
+  const toHref = (hash: string) => (isHome ? hash : `/${hash}`);
+
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer-top">
           <div className="footer-brand">
-            <a href="#" className="nav-logo">
+            <a href="/" className="nav-logo">
               <Image src="/logo.png" alt="CloudCam" width={140} height={23} className="footer-logo-img" />
             </a>
             <p>Advanced safety camera systems for New Zealand. Improving driver and road safety through intelligent AI monitoring and telematics.</p>
@@ -67,7 +74,7 @@ export default function Footer() {
             {COLS.map(({ h, links }) => (
               <div key={h} className="footer-col">
                 <h4>{h}</h4>
-                <ul>{links.map(({ label, href }) => <li key={label}><a href={href}>{label}</a></li>)}</ul>
+                <ul>{links.map(({ label, href }) => <li key={label}><a href={href.startsWith('#') ? toHref(href) : href}>{label}</a></li>)}</ul>
               </div>
             ))}
           </div>

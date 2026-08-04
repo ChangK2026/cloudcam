@@ -1,6 +1,7 @@
 'use client';
 import { type MouseEvent, useEffect, useState } from 'react';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 const PLATFORM_ITEMS = [
   { icon: '📡', title: 'Platform Features',  sub: 'Telematics, GPS tracking & geo-fencing',      href: '#telematics' },
@@ -17,6 +18,8 @@ const SYSTEMS_ITEMS = [
 export default function Header() {
   const [scrolled,  setScrolled]  = useState(false);
   const [menuOpen,  setMenuOpen]  = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === '/';
 
   const getHeaderOffset = (hash = '') => {
     const header = document.querySelector('.header');
@@ -41,9 +44,14 @@ export default function Header() {
   };
 
   const handleNavLinkClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
-    event.preventDefault();
     setMenuOpen(false);
 
+    if (!isHome) {
+      // Not on the homepage — let the browser navigate to `/` (+ hash) normally.
+      return;
+    }
+
+    event.preventDefault();
     requestAnimationFrame(() => {
       if (href === '#') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -61,28 +69,38 @@ export default function Header() {
     return () => window.removeEventListener('scroll', fn);
   }, []);
 
+  /* Arriving on the homepage with a hash (e.g. from another page's nav link) — scroll to it */
+  useEffect(() => {
+    if (!isHome || !window.location.hash) return;
+    const hash = window.location.hash;
+    requestAnimationFrame(() => scrollToHash(hash));
+  }, [isHome]);
+
+  /* Resolve a section hash into a full href — from other pages, first navigate home */
+  const toHref = (hash: string) => (isHome ? hash : `/${hash}`);
+
 
   return (
     <header className={`header${scrolled ? ' header-scrolled' : ''}`}>
       <nav className="nav container">
 
-        <a href="#" className="nav-logo" onClick={(event) => handleNavLinkClick(event, '#')}>
+        <a href={isHome ? '#' : '/'} className="nav-logo" onClick={(event) => handleNavLinkClick(event, '#')}>
           <Image src="/logo.png" alt="CloudCam" width={160} height={26} className="nav-logo-img" priority />
         </a>
 
         {/* .nav-open class drives visibility — not CSS :checked */}
         <ul className={`nav-links${menuOpen ? ' nav-open' : ''}`}>
           <li className="nav-item">
-            <a href="#about" className="nav-link" onClick={(event) => handleNavLinkClick(event, '#about')}>About Us</a>
+            <a href={toHref('#about')} className="nav-link" onClick={(event) => handleNavLinkClick(event, '#about')}>About Us</a>
           </li>
           <li className="nav-item">
-            <a href="#telematics" className="nav-link" onClick={(event) => handleNavLinkClick(event, '#telematics')}>
+            <a href={toHref('#telematics')} className="nav-link" onClick={(event) => handleNavLinkClick(event, '#telematics')}>
               Fleet Platform
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 5L6 8L9 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
             </a>
             <div className="dropdown">
               {PLATFORM_ITEMS.map(({ icon, title, sub, href }) => (
-                <a href={href} key={title} className="dropdown-link" onClick={(event) => handleNavLinkClick(event, href)}>
+                <a href={toHref(href)} key={title} className="dropdown-link" onClick={(event) => handleNavLinkClick(event, href)}>
                   <span className="dropdown-icon">{icon}</span>
                   <div><strong>{title}</strong><span>{sub}</span></div>
                 </a>
@@ -90,16 +108,16 @@ export default function Header() {
             </div>
           </li>
           <li className="nav-item">
-            <a href="#installations" className="nav-link" onClick={(event) => handleNavLinkClick(event, '#installations')}>Installations</a>
+            <a href={toHref('#installations')} className="nav-link" onClick={(event) => handleNavLinkClick(event, '#installations')}>Installations</a>
           </li>
           <li className="nav-item">
-            <a href="#products" className="nav-link" onClick={(event) => handleNavLinkClick(event, '#products')}>
+            <a href={toHref('#products')} className="nav-link" onClick={(event) => handleNavLinkClick(event, '#products')}>
               Camera Systems
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 5L6 8L9 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
             </a>
             <div className="dropdown">
               {SYSTEMS_ITEMS.map(({ icon, title, sub, href }) => (
-                <a href={href} key={title} className="dropdown-link" onClick={(event) => handleNavLinkClick(event, href)}>
+                <a href={toHref(href)} key={title} className="dropdown-link" onClick={(event) => handleNavLinkClick(event, href)}>
                   <span className="dropdown-icon">{icon}</span>
                   <div><strong>{title}</strong><span>{sub}</span></div>
                 </a>
@@ -107,7 +125,7 @@ export default function Header() {
             </div>
           </li>
           <li className="nav-item">
-            <a href="#contact" className="nav-link" onClick={(event) => handleNavLinkClick(event, '#contact')}>Contact</a>
+            <a href={toHref('#contact')} className="nav-link" onClick={(event) => handleNavLinkClick(event, '#contact')}>Contact</a>
           </li>
         </ul>
 
