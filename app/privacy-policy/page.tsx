@@ -102,7 +102,8 @@ const SECTIONS = [
       { type: 'h', text: 'Contact & billing records' },
       { type: 'p', text: 'Customer and financial records are retained for as long as necessary to provide services, and a minimum of 7 years for financial and contractual records.' },
       { type: 'h', text: 'Storage location' },
-      { type: 'p', text: 'Data may be stored and processed in New Zealand or with cloud providers operating in jurisdictions with comparable privacy protections (including Australia and the United States under appropriate safeguards).' },
+      { type: 'p', text: 'Personal information may be stored or processed in New Zealand or in other jurisdictions where CloudCam or its service providers operate, including Australia and the United States.' },
+      { type: 'p', text: 'Where personal information is disclosed to an overseas recipient, CloudCam will take reasonable steps to ensure that the recipient is subject to privacy safeguards that, overall, provide comparable protection to that available under New Zealand privacy law, or that the disclosure is otherwise permitted under Information Privacy Principle 12 of the Privacy Act 2020.' },
     ],
   },
   {
@@ -110,17 +111,26 @@ const SECTIONS = [
     title: '8. Your Privacy Rights',
     content: [
       { type: 'p', text: 'Under the New Zealand Privacy Act 2020, you have the right to:' },
-      { type: 'li', text: 'Access personal information we hold about you' },
-      { type: 'li', text: 'Request correction of any inaccurate personal information' },
-      { type: 'li', text: 'Request deletion of personal information, subject to our legal retention obligations' },
-      { type: 'li', text: 'Raise a complaint if you believe we have breached the Privacy Act' },
+      { type: 'li', text: 'Access personal information we hold about you;' },
+      { type: 'li', text: 'Request correction of personal information that you believe is inaccurate, incomplete, out of date, or misleading; and' },
+      { type: 'li', text: 'Request that CloudCam consider deleting personal information where retention is no longer required for legal, contractual, evidential, operational, or business purposes.' },
+      { type: 'li', text: 'CloudCam will assess such requests in accordance with applicable legal requirements and legitimate business needs.' },
       { type: 'p', text: 'To exercise any of these rights, please contact us at privacy@cloudcam.co.nz. We will respond within 20 working days as required by the Privacy Act 2020.' },
       { type: 'p', text: 'If you are not satisfied with our response, you may contact the Office of the Privacy Commissioner at www.privacy.org.nz or by calling 0800 803 909.' },
     ],
   },
   {
+    id: 'cloudcam-role',
+    title: '9. CloudCam’s Role',
+    content: [
+      { type: 'p', text: 'In most cases, CloudCam provides technology, storage and data processing services on behalf of fleet operators and customers who engage our services.' },
+      { type: 'p', text: 'The fleet operator or customer is generally responsible for determining the purposes for which personal information is collected, used and disclosed through CloudCam systems, including compliance with applicable privacy, employment and workplace monitoring obligations.' },
+      { type: 'p', text: 'Fleet operators are responsible for providing any notices, acknowledgements or other communications required by law to drivers, employees, contractors, passengers or other affected individuals.' },
+    ],
+  },
+  {
     id: 'driver-notice',
-    title: '9. Notice to Drivers',
+    title: '10. Notice to Drivers',
     content: [
       { type: 'p', text: 'If you are a driver operating a vehicle fitted with a CloudCam system, please be aware:' },
       { type: 'li', text: 'Your vehicle is equipped with cameras that may record video footage inside and outside the vehicle' },
@@ -133,7 +143,7 @@ const SECTIONS = [
   },
   {
     id: 'marketing',
-    title: '10. Marketing Communications',
+    title: '11. Marketing Communications',
     content: [
       { type: 'p', text: 'We may use your contact information to send you information about CloudCam products, services, industry updates, or special offers where you have provided consent or where permitted by applicable law.' },
       { type: 'li', text: 'You may opt out of marketing emails at any time by clicking the "Unsubscribe" link in any email we send, or by contacting privacy@cloudcam.co.nz' },
@@ -143,7 +153,7 @@ const SECTIONS = [
   },
   {
     id: 'breach',
-    title: '11. Data Breach Notification',
+    title: '12. Data Breach Notification',
     content: [
       { type: 'p', text: 'In the event of a privacy breach that poses a serious risk of harm, Cloud Cam Limited will comply with its mandatory notification obligations under the New Zealand Privacy Act 2020 (Part 7):' },
       { type: 'li', text: 'We will notify the Office of the Privacy Commissioner as soon as practicable after becoming aware of a notifiable privacy breach' },
@@ -154,7 +164,7 @@ const SECTIONS = [
   },
   {
     id: 'security',
-    title: '12. Security',
+    title: '13. Security',
     content: [
       { type: 'p', text: 'We implement appropriate technical and organisational measures to protect personal information against unauthorised access, loss, or disclosure, including:' },
       { type: 'li', text: 'Encrypted data transmission (HTTPS/TLS)' },
@@ -165,7 +175,7 @@ const SECTIONS = [
   },
   {
     id: 'cookies',
-    title: '13. Website Cookies & Analytics',
+    title: '14. Website Cookies & Analytics',
     content: [
       { type: 'p', text: 'Our website (cloudcam.co.nz) uses cookies and similar technologies. These may include:' },
       { type: 'li', text: 'Strictly necessary cookies: Required for core site functionality (session management, form submissions)' },
@@ -176,7 +186,7 @@ const SECTIONS = [
   },
   {
     id: 'changes',
-    title: '14. Changes to This Policy',
+    title: '15. Changes to This Policy',
     content: [
       { type: 'p', text: 'We may update this Privacy Policy from time to time to reflect changes in our practices or applicable law. The updated policy will be posted on our website with a revised effective date.' },
       { type: 'p', text: 'For material changes that affect how we use your personal information, we will take reasonable steps to notify affected individuals directly.' },
@@ -184,7 +194,7 @@ const SECTIONS = [
   },
   {
     id: 'contact',
-    title: '15. Contact Us',
+    title: '16. Contact Us',
     content: [
       { type: 'p', text: 'For any privacy-related enquiries, access requests, or complaints, please contact:' },
       { type: 'h', text: 'Cloud Cam Limited — Privacy Officer' },
@@ -252,7 +262,7 @@ export default function PrivacyPolicy() {
                 ))}
 
                 <p className="pp-footer-note">
-                  Last updated: 1 June 2025 · Cloud Cam Limited · Auckland, New Zealand
+                  Last updated: 5 August 2026 · Cloud Cam Limited · Auckland, New Zealand
                 </p>
               </div>
             </article>
