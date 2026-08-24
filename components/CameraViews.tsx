@@ -18,7 +18,7 @@ const VIEWS: Record<string, { label: string; id: string; desc: string; images: F
     desc: 'Full visibility along both sides of the vehicle — essential for lane changes, cyclists, and kerbside incidents.',
     images: [
       { src: '/footage/side-a.jpg',     caption: 'LH side — open highway at 69 km/h' },
-      { src: '/footage/side-b-v2.jpg',  caption: 'LH side — quarry and worksite environment' },
+      { src: '/footage/side-b-v2.jpg',  caption: 'RH side — quarry and worksite environment' },
     ],
   },
   rear:   {
